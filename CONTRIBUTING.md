@@ -1,4 +1,4 @@
-# Welcome to the contributing guidelines for SRL
+# Welcome to the contributing guidelines for YuGiOh Referee
 
 We first want to thank you for investing time to our project!  
 Any contribution you make will be reviewed an potentially merged into the project.
