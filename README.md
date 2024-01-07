@@ -42,4 +42,4 @@ This project is worked on in my free time. Thereby new features can take a while
 
 If there is an feature you want to see. Create an issue where we can discuss if this feature should be added to the repository. If you are able to programm yourself feel free to create a PR with your feature (at least an working PoC).
 
-For more details see [Code of Conduct](CODE_OF_CONDUCT.md)
+For more details see [CONTRIBUTING.md](CONTRIBUTING.md)
