@@ -128,6 +128,12 @@ const cardSchema = new Schema<Card | Monster | Spell | Trap>({
     unique: true,
     index: true,
   },
+  name_lower: {
+    type: Type.String,
+    required: true,
+    unique: true,
+    index: true,
+  },
   type: {
     type: Type.String,
     enum: cardTypes,

@@ -30,7 +30,9 @@ async function getCardFromDatabase(
   cardName: string
 ): Promise<Optional<Card | Monster | Spell | Trap>> {
   try {
-    const card = await CardModel.findOne({ name: cardName }).exec();
+    const card = await CardModel.findOne({
+      name_lower: cardName.toLowerCase(),
+    }).exec();
 
     return Optional.ofNullable(card);
   } catch (err) {

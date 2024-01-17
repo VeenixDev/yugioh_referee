@@ -1,9 +1,10 @@
 import express from "express";
-import { Card } from "./entities/card";
-import Optional from "./util/Optional";
+import { Monster } from "./entities/card";
 import { scrapeCard } from "./scraping/dataScraper";
 import { getCardByName } from "./scraping/cardHandler";
 import { fetchSite } from "./scraping/scrapeUtils";
+import Interpreter from "./jit/interpreter";
+import { SpellTrapTypes } from "./entities/meta";
 
 const router = express.Router();
 
@@ -40,6 +41,32 @@ router.get("/card/:cardId/site", (req, res) => {
     `https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=2&request_locale=de&cid=${cardId}`,
     {}
   ).then((result) => res.status(200).send(result.getOrElse("No Data found!")));
+});
+
+router.get("/interpret/:cardName", (req, res) => {
+  const interpreter = new Interpreter();
+
+  getCardByName(req.params.cardName).then((cardOpt) => {
+    if (cardOpt.isPresent) {
+      const card = cardOpt.value;
+      if (SpellTrapTypes.includes(card.type)) {
+        res.status(200).json({
+          error: "Not implemented yet!",
+        });
+        return;
+      } else {
+        const parseResult = interpreter.parse(card as Monster);
+        res.status(200);
+        parseResult.ifPresentOrElse(
+          (value) => res.json(value),
+          () => res.json({ error: "Couldn't parse card!" })
+        );
+        return;
+      }
+    } else {
+      res.sendStatus(404);
+    }
+  });
 });
 
 export default router;

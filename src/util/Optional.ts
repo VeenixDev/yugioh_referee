@@ -53,8 +53,23 @@ class Optional<E> {
    * @param fn The callback that gets called
    */
   public ifPresent(fn: (obj: E) => void): void {
+    this.ifPresentOrElse(fn, () => {});
+  }
+
+  /**
+   * Calles an callback acording to if the value is present or not
+   *
+   * @param presentFn The callback that gets called when a value is present
+   * @param elseFn The callback that gets called when NO value is present
+   */
+  public ifPresentOrElse(
+    presentFn: (obj: E) => void,
+    elseFn: () => void
+  ): void {
     if (this.isPresent) {
-      fn(this._value as E);
+      presentFn(this.value as E);
+    } else {
+      elseFn();
     }
   }
 

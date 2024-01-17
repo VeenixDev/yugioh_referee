@@ -14,6 +14,7 @@ import {
 export class Card {
   id!: string;
   name!: string;
+  name_lower!: string;
   description!: string;
   type!: CardType;
   frame!: CardFrame;
@@ -31,6 +32,7 @@ export class Card {
   ) {
     this.id = id;
     this.name = name;
+    this.name_lower = name.toLowerCase();
     this.description = description;
     this.type = type;
     this.frame = frame;

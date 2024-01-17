@@ -9,19 +9,20 @@ export class Token {
 }
 
 export class TokenArg {
-  public values: Array<Token>;
+  public values: Array<Object>;
 
-  public constructor(values: Array<Token>) {
+  public constructor(values: Array<Object>) {
     this.values = values;
   }
 }
 
 export enum TokenTypes {
-  SUMMON_REQUIREMENT,
-  CONDITION,
-  IDENTIFIER,
-  QUICK_EFFECT,
-  EFFECT_CHOOSER,
+  SUMMON_REQUIREMENT = "Summon Requirement",
+  SUMMON = "Summon",
+  CONDITION = "Condition",
+  IDENTIFIER = "Identifier",
+  QUICK_EFFECT = "Quick Effect",
+  EFFECT_CHOOSER = "Effect Chooser",
 }
 
 const asType = (type: TokenTypes) => (value: Array<TokenArg>) =>

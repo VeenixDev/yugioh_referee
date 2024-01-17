@@ -30,6 +30,8 @@ export type CardType =
   | "Token"
   | "Skill Card";
 
+export const SpellTrapTypes: CardType[] = ["Spell Card", "Trap Card"];
+
 export const FusionTypes: CardType[] = [
   "Fusion Monster",
   "Pendulum Effect Fusion Monster",
